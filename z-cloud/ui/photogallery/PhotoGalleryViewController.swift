@@ -26,16 +26,12 @@ class PhotoGalleryViewController: UIViewController {
         
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let lastItemIndex = 49
+        let lastSectionIndex = 0
+        myCollectionView.scrollToItem(at: IndexPath(item: lastItemIndex, section: lastSectionIndex), at: .bottom, animated: false)
+    }
     
 }
 
@@ -74,11 +70,6 @@ extension PhotoGalleryViewController: UICollectionViewDelegateFlowLayout{
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-//        print("View frame width: \(view.frame.width)")
-//        print("Padding space: \(paddingSpace)")
-//        print("Aviable width: \(availableWidth)")
-//        print("Width per item: \(widthPerItem)")
-//        print("")
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
