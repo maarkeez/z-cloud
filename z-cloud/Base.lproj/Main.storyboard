@@ -23,9 +23,17 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="lSZ-Lx-xpP"/>
-                                    <barButtonItem systemItem="organize" id="Deu-JJ-xXj"/>
+                                    <barButtonItem title="Item" image="iphone-2" id="Deu-JJ-xXj">
+                                        <connections>
+                                            <action selector="onIphoneClick:" destination="BYZ-38-t0r" id="wqo-Y3-JQr"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xF0-ij-gSH"/>
-                                    <barButtonItem title="Item" image="blue-cloud" id="tBk-ki-UfL"/>
+                                    <barButtonItem title="Item" image="blue-cloud" id="tBk-ki-UfL">
+                                        <connections>
+                                            <action selector="onCloudClick:" destination="BYZ-38-t0r" id="Rrp-Sm-Hjp"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="h3s-jp-uOI"/>
                                 </items>
                             </toolbar>
@@ -46,7 +54,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample-image-2" translatesAutoresizingMaskIntoConstraints="NO" id="Slc-Dk-cDC">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Slc-Dk-cDC">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                 </imageView>
                                             </subviews>
@@ -122,6 +130,6 @@
     </scenes>
     <resources>
         <image name="blue-cloud" width="36" height="36"/>
-        <image name="sample-image-2" width="728" height="410"/>
+        <image name="iphone-2" width="42" height="42"/>
     </resources>
 </document>

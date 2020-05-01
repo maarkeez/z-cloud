@@ -18,6 +18,14 @@ class PhotoGalleryViewController: UIViewController {
     // MARK: - Visual elements
     @IBOutlet weak var myCollectionView: UICollectionView!
     
+    @IBAction func onIphoneClick(_ sender: UIBarButtonItem) {
+        loadPhotoGallery()
+    }
+    
+    @IBAction func onCloudClick(_ sender: UIBarButtonItem) {
+        loadZCloud()
+    }
+    
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +34,21 @@ class PhotoGalleryViewController: UIViewController {
         myCollectionView.dataSource = self
         
         PhotoAccessService.shared.checkPhotoLibraryAccess(self)
+        loadPhotoGallery()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let lastItemIndex = PhotoService.singleton().latestPhotoIndex()
         myCollectionView.scrollToItem(at: IndexPath(item: lastItemIndex, section: 0), at: .bottom, animated: false)
+    }
+    
+    private func loadPhotoGallery(){
+        self.title = "Photo Gallery"
+    }
+    
+    private func loadZCloud(){
+        self.title = "Z Cloud"
     }
     
 }

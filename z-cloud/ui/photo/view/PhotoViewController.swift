@@ -16,7 +16,9 @@ class PhotoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view = ImageZoomView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), image: myDisplayImage!)
+        // Needed to center the image in the phone
+        let navBarHeight = self.navigationController?.navigationBar.frame.height ?? 0.0
+        self.view = ImageZoomView(frame: CGRect(x: 0, y: -navBarHeight, width: self.view.frame.width, height: self.view.frame.height), image: myDisplayImage!)
         self.view.backgroundColor = UIConfiguration.singleton().color.mainBackground
     }
 
