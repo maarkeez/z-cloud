@@ -25,6 +25,7 @@ class PhotoGalleryViewController: UIViewController {
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
         
+        PhotoAccessService.shared.checkPhotoLibraryAccess(self)
     }
     
     override func viewDidAppear(_ animated: Bool) {

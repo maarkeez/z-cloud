@@ -18,6 +18,7 @@
 		E5EC9A59245CBB210099CF70 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A58245CBB210099CF70 /* PhotoViewController.swift */; };
 		E5EC9A5B245CBF270099CF70 /* ImageZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A5A245CBF270099CF70 /* ImageZoomView.swift */; };
 		E5EC9A69245CCCBC0099CF70 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */; };
+		E5EC9A6C245CCFAB0099CF70 /* PhotoAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A6B245CCFAB0099CF70 /* PhotoAccessService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E5EC9A58245CBB210099CF70 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E5EC9A5A245CBF270099CF70 /* ImageZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomView.swift; sourceTree = "<group>"; };
 		E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
+		E5EC9A6B245CCFAB0099CF70 /* PhotoAccessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAccessService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */,
+				E5EC9A6B245CCFAB0099CF70 /* PhotoAccessService.swift */,
 			);
 			name = photo;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				E5EC9A54245C98300099CF70 /* UIConfiguration.swift in Sources */,
 				E5EC9A3D245C948C0099CF70 /* SceneDelegate.swift in Sources */,
 				E5EC9A5B245CBF270099CF70 /* ImageZoomView.swift in Sources */,
+				E5EC9A6C245CCFAB0099CF70 /* PhotoAccessService.swift in Sources */,
 				E5EC9A59245CBB210099CF70 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
