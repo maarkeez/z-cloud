@@ -14,6 +14,7 @@
 		E5EC9A47245C94CC0099CF70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5EC9A45245C94CC0099CF70 /* LaunchScreen.storyboard */; };
 		E5EC9A51245C95B10099CF70 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A50245C95B10099CF70 /* PhotoGalleryViewController.swift */; };
 		E5EC9A54245C98300099CF70 /* UIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A53245C98300099CF70 /* UIConfiguration.swift */; };
+		E5EC9A56245CA86E0099CF70 /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A55245CA86E0099CF70 /* PhotoGalleryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E5EC9A48245C94CC0099CF70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5EC9A50245C95B10099CF70 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		E5EC9A53245C98300099CF70 /* UIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConfiguration.swift; sourceTree = "<group>"; };
+		E5EC9A55245CA86E0099CF70 /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				E5EC9A50245C95B10099CF70 /* PhotoGalleryViewController.swift */,
+				E5EC9A55245CA86E0099CF70 /* PhotoGalleryCell.swift */,
 			);
 			path = photogallery;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			files = (
 				E5EC9A51245C95B10099CF70 /* PhotoGalleryViewController.swift in Sources */,
 				E5EC9A3B245C948C0099CF70 /* AppDelegate.swift in Sources */,
+				E5EC9A56245CA86E0099CF70 /* PhotoGalleryCell.swift in Sources */,
 				E5EC9A54245C98300099CF70 /* UIConfiguration.swift in Sources */,
 				E5EC9A3D245C948C0099CF70 /* SceneDelegate.swift in Sources */,
 			);
