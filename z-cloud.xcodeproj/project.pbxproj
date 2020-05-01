@@ -81,20 +81,19 @@
 		E5EC9A4E245C958C0099CF70 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				E5EC9A57245CBB020099CF70 /* photoview */,
+				E5EC9A6A245CCE110099CF70 /* photo */,
 				E5EC9A52245C98030099CF70 /* global */,
-				E5EC9A4F245C95930099CF70 /* photogallery */,
 			);
 			path = ui;
 			sourceTree = "<group>";
 		};
-		E5EC9A4F245C95930099CF70 /* photogallery */ = {
+		E5EC9A4F245C95930099CF70 /* gallery */ = {
 			isa = PBXGroup;
 			children = (
 				E5EC9A50245C95B10099CF70 /* PhotoGalleryViewController.swift */,
 				E5EC9A55245CA86E0099CF70 /* PhotoGalleryCell.swift */,
 			);
-			path = photogallery;
+			path = gallery;
 			sourceTree = "<group>";
 		};
 		E5EC9A52245C98030099CF70 /* global */ = {
@@ -105,13 +104,13 @@
 			path = global;
 			sourceTree = "<group>";
 		};
-		E5EC9A57245CBB020099CF70 /* photoview */ = {
+		E5EC9A57245CBB020099CF70 /* view */ = {
 			isa = PBXGroup;
 			children = (
 				E5EC9A58245CBB210099CF70 /* PhotoViewController.swift */,
 				E5EC9A5A245CBF270099CF70 /* ImageZoomView.swift */,
 			);
-			path = photoview;
+			path = view;
 			sourceTree = "<group>";
 		};
 		E5EC9A66245CCCA90099CF70 /* services */ = {
@@ -128,6 +127,15 @@
 				E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */,
 			);
 			name = photo;
+			sourceTree = "<group>";
+		};
+		E5EC9A6A245CCE110099CF70 /* photo */ = {
+			isa = PBXGroup;
+			children = (
+				E5EC9A4F245C95930099CF70 /* gallery */,
+				E5EC9A57245CBB020099CF70 /* view */,
+			);
+			path = photo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
