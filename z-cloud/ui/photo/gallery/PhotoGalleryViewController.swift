@@ -34,9 +34,6 @@ class PhotoGalleryViewController: UIViewController {
         myCollectionView.scrollToItem(at: IndexPath(item: lastItemIndex, section: 0), at: .bottom, animated: false)
     }
     
-    func getPhoto(at indexPath: IndexPath) -> UIImage {
-        return PhotoService.singleton().getPhoto(withIndex: indexPath.row)
-    }
 }
 
 // MARK: - Extension to handle photo cells
@@ -54,7 +51,11 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoGalleryCell
         cell.backgroundColor = .black
         cell.myImage.contentMode = .scaleAspectFill
-        cell.myImage.image = getPhoto(at: indexPath)
+        
+        PhotoService.singleton().getPhoto(at: indexPath.row){(image) in
+            cell.myImage.image=image
+        }
+        
         return cell
     }
         
@@ -65,10 +66,15 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
 extension PhotoGalleryViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
-        vc.myDisplayImage = getPhoto(at: indexPath)
+       
+        PhotoService.singleton().getPhoto(at: indexPath.row){(image) in
+            if let image = image {
+                let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
+                vc.myDisplayImage = image
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
         
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
