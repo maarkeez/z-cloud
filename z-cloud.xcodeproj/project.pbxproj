@@ -17,6 +17,7 @@
 		E5EC9A56245CA86E0099CF70 /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A55245CA86E0099CF70 /* PhotoGalleryCell.swift */; };
 		E5EC9A59245CBB210099CF70 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A58245CBB210099CF70 /* PhotoViewController.swift */; };
 		E5EC9A5B245CBF270099CF70 /* ImageZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A5A245CBF270099CF70 /* ImageZoomView.swift */; };
+		E5EC9A69245CCCBC0099CF70 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E5EC9A55245CA86E0099CF70 /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
 		E5EC9A58245CBB210099CF70 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E5EC9A5A245CBF270099CF70 /* ImageZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomView.swift; sourceTree = "<group>"; };
+		E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		E5EC9A39245C948C0099CF70 /* z-cloud */ = {
 			isa = PBXGroup;
 			children = (
+				E5EC9A66245CCCA90099CF70 /* services */,
 				E5EC9A4E245C958C0099CF70 /* ui */,
 				E5EC9A3A245C948C0099CF70 /* AppDelegate.swift */,
 				E5EC9A3C245C948C0099CF70 /* SceneDelegate.swift */,
@@ -109,6 +112,22 @@
 				E5EC9A5A245CBF270099CF70 /* ImageZoomView.swift */,
 			);
 			path = photoview;
+			sourceTree = "<group>";
+		};
+		E5EC9A66245CCCA90099CF70 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				E5EC9A67245CCCAE0099CF70 /* photo */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		E5EC9A67245CCCAE0099CF70 /* photo */ = {
+			isa = PBXGroup;
+			children = (
+				E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */,
+			);
+			name = photo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5EC9A69245CCCBC0099CF70 /* PhotoService.swift in Sources */,
 				E5EC9A51245C95B10099CF70 /* PhotoGalleryViewController.swift in Sources */,
 				E5EC9A3B245C948C0099CF70 /* AppDelegate.swift in Sources */,
 				E5EC9A56245CA86E0099CF70 /* PhotoGalleryCell.swift in Sources */,

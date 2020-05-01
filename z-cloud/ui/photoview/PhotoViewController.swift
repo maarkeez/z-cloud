@@ -10,11 +10,13 @@ import UIKit
 
 class PhotoViewController: UIViewController {
     
+    var myDisplayImage : UIImage?
+    
     // MARK: - Functions
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view = ImageZoomView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), image: #imageLiteral(resourceName: "sample-image-2"))
+        self.view = ImageZoomView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), image: myDisplayImage!)
         self.view.backgroundColor = UIConfiguration.singleton().color.mainBackground
     }
 
