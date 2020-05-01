@@ -18,6 +18,7 @@ class PhotoGalleryViewController: UIViewController {
     // MARK: - Visual elements
     @IBOutlet weak var myCollectionView: UICollectionView!
     
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         myCollectionView.backgroundColor = UIConfiguration.singleton().color.mainBackground
@@ -60,6 +61,10 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
 // MARK: - Extension to handle cell events
 extension PhotoGalleryViewController: UICollectionViewDelegate{
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: - Extension to handle layout
