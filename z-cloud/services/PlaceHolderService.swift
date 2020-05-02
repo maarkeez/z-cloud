@@ -25,7 +25,7 @@ class PlaceHolderService: PhotoService {
     }
     
     func latestPhotoIndex() -> Int {
-        return numberOfPhotos() - 1
+        return numberOfPhotos() > 0 ? numberOfPhotos() - 1 : 0
     }
     
     func getPhoto(at photoIndex: Int, completion: @escaping (UIImage?) -> ()) {

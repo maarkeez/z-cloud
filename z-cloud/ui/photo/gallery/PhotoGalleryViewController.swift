@@ -76,6 +76,9 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
         cell.backgroundColor = .black
         cell.myImage.contentMode = .scaleAspectFill
         
+        //Placeholder, mean real one loads
+        cell.myImage.image=#imageLiteral(resourceName: "image-placeholder")
+        
         photoService.getPhoto(at: indexPath.row){(image) in
             cell.myImage.image=image
         }

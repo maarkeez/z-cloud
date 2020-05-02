@@ -14,6 +14,7 @@ class PhotoServiceFactory {
     
     private let photoGalleryService = PhotoGalleryService()
     private let placeHolderService = PlaceHolderService()
+    private let zcloudService = ZCloudService()
     
     enum SourceType {
         case GALLERY
@@ -29,7 +30,7 @@ class PhotoServiceFactory {
         case .GALLERY:
             return photoGalleryService
         default:
-            return placeHolderService
+            return zcloudService
         }
     }
     

@@ -13,6 +13,7 @@
 		E525C628245D58E50024A146 /* ZCloudService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E525C627245D58E50024A146 /* ZCloudService.swift */; };
 		E525C62C245D5ED90024A146 /* PlaceHolderApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E525C62B245D5ED90024A146 /* PlaceHolderApi.swift */; };
 		E525C630245D66B10024A146 /* PlaceHolderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E525C62F245D66B10024A146 /* PlaceHolderService.swift */; };
+		E525C632245D6CA60024A146 /* ZCloudApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E525C631245D6CA60024A146 /* ZCloudApi.swift */; };
 		E5EC9A3B245C948C0099CF70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A3A245C948C0099CF70 /* AppDelegate.swift */; };
 		E5EC9A3D245C948C0099CF70 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC9A3C245C948C0099CF70 /* SceneDelegate.swift */; };
 		E5EC9A42245C948C0099CF70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5EC9A40245C948C0099CF70 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		E525C627245D58E50024A146 /* ZCloudService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCloudService.swift; sourceTree = "<group>"; };
 		E525C62B245D5ED90024A146 /* PlaceHolderApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderApi.swift; sourceTree = "<group>"; };
 		E525C62F245D66B10024A146 /* PlaceHolderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderService.swift; sourceTree = "<group>"; };
+		E525C631245D6CA60024A146 /* ZCloudApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZCloudApi.swift; sourceTree = "<group>"; };
 		E5EC9A37245C948C0099CF70 /* z-cloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "z-cloud.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5EC9A3A245C948C0099CF70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5EC9A3C245C948C0099CF70 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,9 +166,10 @@
 				E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */,
 				E525C623245D55630024A146 /* PhotoServiceFactory.swift */,
 				E525C625245D570B0024A146 /* PhotoGalleryService.swift */,
-				E525C627245D58E50024A146 /* ZCloudService.swift */,
 				E525C62B245D5ED90024A146 /* PlaceHolderApi.swift */,
 				E525C62F245D66B10024A146 /* PlaceHolderService.swift */,
+				E525C631245D6CA60024A146 /* ZCloudApi.swift */,
+				E525C627245D58E50024A146 /* ZCloudService.swift */,
 			);
 			name = photo;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				E5EC9A56245CA86E0099CF70 /* PhotoGalleryCell.swift in Sources */,
 				E5EC9A54245C98300099CF70 /* UIConfiguration.swift in Sources */,
 				E5EC9A3D245C948C0099CF70 /* SceneDelegate.swift in Sources */,
+				E525C632245D6CA60024A146 /* ZCloudApi.swift in Sources */,
 				E525C624245D55630024A146 /* PhotoServiceFactory.swift in Sources */,
 				E5EC9A5B245CBF270099CF70 /* ImageZoomView.swift in Sources */,
 				E5EC9A6C245CCFAB0099CF70 /* PhotoAccessService.swift in Sources */,
