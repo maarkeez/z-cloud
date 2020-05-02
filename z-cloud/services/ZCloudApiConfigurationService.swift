@@ -10,8 +10,20 @@ import Foundation
 
 class ZCloudApiConfigurationService {
     
+    private static let KEY_HOST = "zcloud_host"
+    private static let KYE_PORT = "zcloud_port"
     private static let INSTANCE = ZCloudApiConfigurationService()
+    
     private var configuration : Configuration?
+    
+    private init(){
+        let defaults = UserDefaults.standard
+        if let host = defaults.object(forKey: ZCloudApiConfigurationService.KEY_HOST) as? String {
+            configuration = Configuration()
+            configuration?.apiHost = host
+            configuration?.apiPort = defaults.object(forKey: ZCloudApiConfigurationService.KYE_PORT) as! String
+        }
+    }
     
     static func singleton() -> ZCloudApiConfigurationService {
         return INSTANCE
@@ -23,6 +35,9 @@ class ZCloudApiConfigurationService {
     
     func set(_ configuration: Configuration){
         self.configuration = configuration
+        let defaults = UserDefaults.standard
+        defaults.set(configuration.apiHost, forKey: ZCloudApiConfigurationService.KEY_HOST)
+        defaults.set(configuration.apiPort, forKey: ZCloudApiConfigurationService.KYE_PORT)
         ZCloudService.signleton().reloadData()
     }
     
