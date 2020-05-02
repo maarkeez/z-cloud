@@ -14,6 +14,7 @@ class PhotoGalleryViewController: UIViewController {
     private let reuseIdentifier = "PhotoGalleryCell"
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 2.5, left: 10.0, bottom: 2.5, right: 10.0)
+    private var photoService = PhotoServiceFactory.singleton().get(.GALLERY)
     
     // MARK: - Visual elements
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -39,16 +40,18 @@ class PhotoGalleryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let lastItemIndex = PhotoService.singleton().latestPhotoIndex()
+        let lastItemIndex = photoService.latestPhotoIndex()
         myCollectionView.scrollToItem(at: IndexPath(item: lastItemIndex, section: 0), at: .bottom, animated: false)
     }
     
     private func loadPhotoGallery(){
         self.title = "Photo Gallery"
+        photoService = PhotoServiceFactory.singleton().get(.GALLERY)
     }
     
     private func loadZCloud(){
         self.title = "Z Cloud"
+        photoService = PhotoServiceFactory.singleton().get(.ZCLOUD)
     }
     
 }
@@ -61,7 +64,7 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PhotoService.singleton().numberOfPhotos()
+        return photoService.numberOfPhotos()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -69,7 +72,7 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
         cell.backgroundColor = .black
         cell.myImage.contentMode = .scaleAspectFill
         
-        PhotoService.singleton().getPhoto(at: indexPath.row){(image) in
+        photoService.getPhoto(at: indexPath.row){(image) in
             cell.myImage.image=image
         }
         
@@ -84,7 +87,7 @@ extension PhotoGalleryViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-        PhotoService.singleton().getPhoto(at: indexPath.row){(image) in
+        photoService.getPhoto(at: indexPath.row){(image) in
             if let image = image {
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
                 vc.myDisplayImage = image
