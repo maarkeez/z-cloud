@@ -15,16 +15,15 @@ class ZCloudService : PhotoService {
     
     private let api = ZCloudApi()
     private var photos: [String] = []
-    
-    private init() {
-        reloadData()
-    }
+        
+    init(){reloadData()}
     
     static func signleton() -> ZCloudService {
         return INSTANCE
     }
     
     func reloadData(){
+        photos = []
         api.findPhotos { (photos) in
             self.photos = photos
         }

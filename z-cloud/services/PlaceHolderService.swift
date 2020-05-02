@@ -13,8 +13,9 @@ class PlaceHolderService: PhotoService {
     
     private let api = PlaceHolderApi()
     private var photos: [PlaceHolderPhoto] = []
-    
-    init() {
+  
+    func reloadData() {
+        photos = []
         api.findPhotos { (photos) in
             self.photos = photos
         }

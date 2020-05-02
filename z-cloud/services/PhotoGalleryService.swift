@@ -14,10 +14,8 @@ class PhotoGalleryService: PhotoService {
         
     private let manager = PHImageManager.default()
     private var photoGalleryImages = [PHAsset]()
-    
-    init() {
-        loadPhotoGalleryImages()
-    }
+       
+    init(){reloadData()}
     
     func numberOfPhotos() -> Int {
         return photoGalleryImages.count
@@ -44,7 +42,8 @@ class PhotoGalleryService: PhotoService {
         
     }
     
-    private func loadPhotoGalleryImages() {
+    func reloadData() {
+        photoGalleryImages = []
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
         assets.enumerateObjects({ (object, count, stop) in
            // self.cameraAssets.add(object)

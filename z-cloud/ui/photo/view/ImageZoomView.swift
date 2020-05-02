@@ -70,17 +70,16 @@ class ImageZoomView: UIScrollView, UIScrollViewDelegate  {
     
     
     func setupSaveGestureRecognizer() {
-        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(showSaveImageMenu))
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(saveImage))
         gestureRecognizer.minimumPressDuration = 1.0
         gestureRecognizer.delaysTouchesBegan = true
         addGestureRecognizer(gestureRecognizer)
     }
     
     
-    @objc func showSaveImageMenu(){
+    @objc func saveImage(){
         if(!saved){
             saved = true
-            print("Saving...")
             UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(afterSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
         }
     }

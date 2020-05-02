@@ -71,6 +71,7 @@ class PhotoGalleryViewController: UIViewController {
         
         // Load data from source
         photoService = PhotoServiceFactory.singleton().get(.GALLERY)
+        photoService.reloadData()
         myCollectionView.reloadData()
         scrollToBottom()
     }
@@ -85,6 +86,7 @@ class PhotoGalleryViewController: UIViewController {
         
         // Load data from source
         photoService = PhotoServiceFactory.singleton().get(.ZCLOUD)
+        //photoService.reloadData()
         myCollectionView.reloadData()
         scrollToBottom()
     }
