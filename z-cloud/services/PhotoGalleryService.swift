@@ -14,16 +14,6 @@ class PhotoGalleryService: PhotoService {
         
     private let manager = PHImageManager.default()
     private var photoGalleryImages = [PHAsset]()
-       
-    init(){reloadData()}
-    
-    func numberOfPhotos() -> Int {
-        return photoGalleryImages.count
-    }
-    
-    func latestPhotoIndex() -> Int {
-        return numberOfPhotos() > 0 ? numberOfPhotos() - 1 : 0
-    }
     
     func getPhoto(at photoIndex: Int,  completion: @escaping (_ photoImage: UIImage?)->()) {
         
@@ -42,12 +32,13 @@ class PhotoGalleryService: PhotoService {
         
     }
     
-    func reloadData() {
+    func reloadData(completion: @escaping (_ numberOfPhotos: Int)->()) {
         photoGalleryImages = []
         let assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: nil)
         assets.enumerateObjects({ (object, count, stop) in
            // self.cameraAssets.add(object)
             self.photoGalleryImages.append(object)
         })
+        completion(photoGalleryImages.count)
     }
 }

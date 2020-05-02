@@ -95,6 +95,41 @@
 			path = settings;
 			sourceTree = "<group>";
 		};
+		E54601E2245E09F30042DFC8 /* zcloud */ = {
+			isa = PBXGroup;
+			children = (
+				E525C631245D6CA60024A146 /* ZCloudApi.swift */,
+				E525C627245D58E50024A146 /* ZCloudService.swift */,
+				E525C636245D8E620024A146 /* ZCloudApiConfigurationService.swift */,
+			);
+			name = zcloud;
+			sourceTree = "<group>";
+		};
+		E54601E3245E09FA0042DFC8 /* gallery */ = {
+			isa = PBXGroup;
+			children = (
+				E525C625245D570B0024A146 /* PhotoGalleryService.swift */,
+			);
+			name = gallery;
+			sourceTree = "<group>";
+		};
+		E54601E4245E0A110042DFC8 /* placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				E525C62B245D5ED90024A146 /* PlaceHolderApi.swift */,
+				E525C62F245D66B10024A146 /* PlaceHolderService.swift */,
+			);
+			name = placeholder;
+			sourceTree = "<group>";
+		};
+		E54601E5245E0A240042DFC8 /* access */ = {
+			isa = PBXGroup;
+			children = (
+				E5EC9A6B245CCFAB0099CF70 /* PhotoAccessService.swift */,
+			);
+			name = access;
+			sourceTree = "<group>";
+		};
 		E5EC9A2E245C948C0099CF70 = {
 			isa = PBXGroup;
 			children = (
@@ -174,15 +209,12 @@
 		E5EC9A67245CCCAE0099CF70 /* photo */ = {
 			isa = PBXGroup;
 			children = (
-				E5EC9A6B245CCFAB0099CF70 /* PhotoAccessService.swift */,
+				E54601E5245E0A240042DFC8 /* access */,
+				E54601E3245E09FA0042DFC8 /* gallery */,
+				E54601E4245E0A110042DFC8 /* placeholder */,
+				E54601E2245E09F30042DFC8 /* zcloud */,
 				E5EC9A68245CCCBC0099CF70 /* PhotoService.swift */,
 				E525C623245D55630024A146 /* PhotoServiceFactory.swift */,
-				E525C625245D570B0024A146 /* PhotoGalleryService.swift */,
-				E525C62B245D5ED90024A146 /* PlaceHolderApi.swift */,
-				E525C62F245D66B10024A146 /* PlaceHolderService.swift */,
-				E525C631245D6CA60024A146 /* ZCloudApi.swift */,
-				E525C627245D58E50024A146 /* ZCloudService.swift */,
-				E525C636245D8E620024A146 /* ZCloudApiConfigurationService.swift */,
 			);
 			name = photo;
 			sourceTree = "<group>";

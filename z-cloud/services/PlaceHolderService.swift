@@ -14,19 +14,12 @@ class PlaceHolderService: PhotoService {
     private let api = PlaceHolderApi()
     private var photos: [PlaceHolderPhoto] = []
   
-    func reloadData() {
+    func reloadData(completion: @escaping (_ numberOfPhotos: Int)->()) {
         photos = []
         api.findPhotos { (photos) in
             self.photos = photos
         }
-    }
-    
-    func numberOfPhotos() -> Int {
-        return photos.count
-    }
-    
-    func latestPhotoIndex() -> Int {
-        return numberOfPhotos() > 0 ? numberOfPhotos() - 1 : 0
+        completion(photos.count)
     }
     
     func getPhoto(at photoIndex: Int, completion: @escaping (UIImage?) -> ()) {

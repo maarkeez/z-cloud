@@ -38,7 +38,7 @@ class ZCloudApiConfigurationService {
         let defaults = UserDefaults.standard
         defaults.set(configuration.apiHost, forKey: ZCloudApiConfigurationService.KEY_HOST)
         defaults.set(configuration.apiPort, forKey: ZCloudApiConfigurationService.KYE_PORT)
-        ZCloudService.signleton().reloadData()
+        ZCloudService.singleton().reloadData(){(_) in }
     }
     
     class Configuration {

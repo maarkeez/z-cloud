@@ -12,9 +12,7 @@ import Photos
 
 protocol PhotoService {
     
-    func reloadData()
-    func numberOfPhotos() -> Int
-    func latestPhotoIndex() -> Int
+    func reloadData(completion: @escaping (_ numberOfPhotos: Int)->())
     func getPhoto(at photoIndex: Int,  completion: @escaping (_ photoImage: UIImage?)->())
     
 }

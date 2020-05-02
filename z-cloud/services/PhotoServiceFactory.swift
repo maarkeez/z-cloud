@@ -14,7 +14,7 @@ class PhotoServiceFactory {
     
     private let photoGalleryService = PhotoGalleryService()
     private let placeHolderService = PlaceHolderService()
-    private let zcloudService = ZCloudService.signleton()
+    private let zcloudService = ZCloudService.singleton()
     
     enum SourceType {
         case GALLERY

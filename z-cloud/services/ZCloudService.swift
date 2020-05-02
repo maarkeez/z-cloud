@@ -15,26 +15,17 @@ class ZCloudService : PhotoService {
     
     private let api = ZCloudApi()
     private var photos: [String] = []
-        
-    init(){reloadData()}
     
-    static func signleton() -> ZCloudService {
+    static func singleton() -> ZCloudService {
         return INSTANCE
     }
     
-    func reloadData(){
+    func reloadData(completion: @escaping (_ numberOfPhotos: Int)->()) {
         photos = []
         api.findPhotos { (photos) in
             self.photos = photos
+            completion(photos.count)
         }
-    }
-    
-    func numberOfPhotos() -> Int {
-        return photos.count
-    }
-    
-    func latestPhotoIndex() -> Int {
-        return numberOfPhotos() > 0 ? numberOfPhotos() - 1 : 0
     }
     
     func getPhoto(at photoIndex: Int, completion: @escaping (UIImage?) -> ()) {

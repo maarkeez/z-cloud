@@ -15,4 +15,10 @@ class PhotoGalleryCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    override func prepareForReuse() {
+        backgroundColor = .black
+        myImage.contentMode = .scaleAspectFill
+        myImage.image=#imageLiteral(resourceName: "image-placeholder")
+    }
 }

@@ -15,6 +15,7 @@ class PhotoGalleryViewController: UIViewController {
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 2.5, left: 10.0, bottom: 2.5, right: 10.0)
     private var photoService = PhotoServiceFactory.singleton().get(.GALLERY)
+    private var itemCount = 0
     
     // MARK: - Visual elements
     @IBOutlet weak var myIphoneBtn: UIBarButtonItem!
@@ -58,6 +59,7 @@ class PhotoGalleryViewController: UIViewController {
         myCollectionView.dataSource = self
         
         PhotoAccessService.shared.checkPhotoLibraryAccess(self)
+        
         loadPhotoGallery()
     }
     
@@ -71,12 +73,14 @@ class PhotoGalleryViewController: UIViewController {
         
         // Load data from source
         photoService = PhotoServiceFactory.singleton().get(.GALLERY)
-        photoService.reloadData()
-        myCollectionView.reloadData()
-        scrollToBottom()
+        photoService.reloadData(){(numberOfPhotos) in
+            self.itemCount = numberOfPhotos
+            self.myCollectionView.reloadData()
+            self.scrollToBottom()
+        }
     }
     
-    private func loadZCloud(){
+    private func loadZCloud() {
         self.title = "Z Cloud"
         
         // Change button colors
@@ -86,14 +90,17 @@ class PhotoGalleryViewController: UIViewController {
         
         // Load data from source
         photoService = PhotoServiceFactory.singleton().get(.ZCLOUD)
-        //photoService.reloadData()
-        myCollectionView.reloadData()
-        scrollToBottom()
+        photoService.reloadData(){(numberOfPhotos) in
+            self.itemCount = numberOfPhotos
+            self.myCollectionView.reloadData()
+            self.scrollToBottom()
+        }
     }
     
     private func scrollToBottom(){
-        let lastItemIndex = photoService.latestPhotoIndex()
-        myCollectionView.scrollToItem(at: IndexPath(item: lastItemIndex, section: 0), at: .bottom, animated: false)
+        if (itemCount > 0){
+            myCollectionView.scrollToItem(at: IndexPath(item: itemCount - 1, section: 0), at: .bottom, animated: false)
+        }
     }
     
     private func setTitleColor(_ color: UIColor){
@@ -111,24 +118,19 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoService.numberOfPhotos()
+        return itemCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoGalleryCell
-        cell.backgroundColor = .black
-        cell.myImage.contentMode = .scaleAspectFill
-        
-        //Placeholder, mean real one loads
-        cell.myImage.image=#imageLiteral(resourceName: "image-placeholder")
-        
+        cell.prepareForReuse()
         photoService.getPhoto(at: indexPath.row){(image) in
             cell.myImage.image=image
         }
         
         return cell
     }
-        
+    
     
 }
 
@@ -136,7 +138,7 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
 extension PhotoGalleryViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        
         photoService.getPhoto(at: indexPath.row){(image) in
             if let image = image {
                 let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
