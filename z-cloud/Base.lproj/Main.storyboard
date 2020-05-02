@@ -88,6 +88,9 @@
                     <navigationItem key="navigationItem" id="BMC-Gm-XO8"/>
                     <connections>
                         <outlet property="myCollectionView" destination="Fdm-MA-aQh" id="MNu-dL-7Sh"/>
+                        <outlet property="myIphoneBtn" destination="Deu-JJ-xXj" id="Qez-ZJ-cOs"/>
+                        <outlet property="myToolbar" destination="a7v-Ej-8hb" id="rfd-5P-htz"/>
+                        <outlet property="myZCloudBtn" destination="tBk-ki-UfL" id="xY8-Lg-xpp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

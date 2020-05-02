@@ -17,8 +17,12 @@ class PhotoGalleryViewController: UIViewController {
     private var photoService = PhotoServiceFactory.singleton().get(.GALLERY)
     
     // MARK: - Visual elements
+    @IBOutlet weak var myIphoneBtn: UIBarButtonItem!
+    @IBOutlet weak var myZCloudBtn: UIBarButtonItem!
     @IBOutlet weak var myCollectionView: UICollectionView!
+    @IBOutlet weak var myToolbar: UIToolbar!
     
+    // MARK: - User actions
     @IBAction func onIphoneClick(_ sender: UIBarButtonItem) {
         loadPhotoGallery()
     }
@@ -28,10 +32,23 @@ class PhotoGalleryViewController: UIViewController {
     }
     
     // MARK: - Functions
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        myCollectionView.backgroundColor = UIConfiguration.singleton().color.mainBackground
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.barTintColor = UIConfiguration.singleton().color.navBarBackgroundColor
+        setTitleColor(UIConfiguration.singleton().color.selectedBarButtonItem)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.myToolbar.isTranslucent = false
+        self.myToolbar.barTintColor = UIConfiguration.singleton().color.navBarBackgroundColor
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myCollectionView.backgroundColor = UIConfiguration.singleton().color.mainBackground
+        self.setNeedsStatusBarAppearanceUpdate()
+        
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
         
@@ -41,6 +58,13 @@ class PhotoGalleryViewController: UIViewController {
     
     private func loadPhotoGallery(){
         self.title = "Photo Gallery"
+        
+        // Change button colors
+        setTitleColor(UIConfiguration.singleton().color.selectedBarButtonItem)
+        myIphoneBtn.tintColor = UIConfiguration.singleton().color.selectedBarButtonItem
+        myZCloudBtn.tintColor = UIConfiguration.singleton().color.unSelectedBarButtonItem
+        
+        // Load data from source
         photoService = PhotoServiceFactory.singleton().get(.GALLERY)
         myCollectionView.reloadData()
         scrollToBottom()
@@ -48,6 +72,13 @@ class PhotoGalleryViewController: UIViewController {
     
     private func loadZCloud(){
         self.title = "Z Cloud"
+        
+        // Change button colors
+        setTitleColor(UIConfiguration.singleton().color.pinkBarButtonItem)
+        myZCloudBtn.tintColor = UIConfiguration.singleton().color.pinkBarButtonItem
+        myIphoneBtn.tintColor = UIConfiguration.singleton().color.unSelectedBarButtonItem
+        
+        // Load data from source
         photoService = PhotoServiceFactory.singleton().get(.ZCLOUD)
         myCollectionView.reloadData()
         scrollToBottom()
@@ -56,6 +87,10 @@ class PhotoGalleryViewController: UIViewController {
     private func scrollToBottom(){
         let lastItemIndex = photoService.latestPhotoIndex()
         myCollectionView.scrollToItem(at: IndexPath(item: lastItemIndex, section: 0), at: .bottom, animated: false)
+    }
+    
+    private func setTitleColor(_ color: UIColor){
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: color]
     }
     
 }
