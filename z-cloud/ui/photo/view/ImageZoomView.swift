@@ -11,18 +11,21 @@ import UIKit
 class ImageZoomView: UIScrollView, UIScrollViewDelegate  {
     var imageView: UIImageView!
     var gestureRecognizer: UITapGestureRecognizer!
-
-    convenience init(frame: CGRect, image: UIImage) {
+    var saved = false
+    var parentVC: UIViewController!
+    
+    convenience init(_ parentVC: UIViewController, frame: CGRect, image: UIImage) {
         self.init(frame: frame)
-
+        self.parentVC = parentVC
         // Creates the image view and adds it as a subview to the scroll view
         imageView = UIImageView(image: image)
         imageView.frame = frame
         imageView.contentMode = .scaleAspectFit
         addSubview(imageView)
-
+        
         setupScrollView()
-        setupGestureRecognizer()
+        setupZoomGestureRecognizer()
+        setupSaveGestureRecognizer()
     }
     
     // Sets the scroll view delegate and zoom scale limits.
@@ -39,7 +42,7 @@ class ImageZoomView: UIScrollView, UIScrollViewDelegate  {
     }
     
     // Sets up the gesture recognizer that receives double taps to auto-zoom
-    func setupGestureRecognizer() {
+    func setupZoomGestureRecognizer() {
         gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
         gestureRecognizer.numberOfTapsRequired = 2
         addGestureRecognizer(gestureRecognizer)
@@ -64,4 +67,35 @@ class ImageZoomView: UIScrollView, UIScrollViewDelegate  {
         zoomRect.origin.y = newCenter.y - (zoomRect.size.height / 2.0)
         return zoomRect
     }
+    
+    
+    func setupSaveGestureRecognizer() {
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(showSaveImageMenu))
+        gestureRecognizer.minimumPressDuration = 1.0
+        gestureRecognizer.delaysTouchesBegan = true
+        addGestureRecognizer(gestureRecognizer)
+    }
+    
+    
+    @objc func showSaveImageMenu(){
+        if(!saved){
+            saved = true
+            print("Saving...")
+            UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(afterSaveImage(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+    }
+    
+    @objc func afterSaveImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            parentVC.present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Save success", message: "Your image has been saved to your photo gallery.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            parentVC.present(ac, animated: true)
+        }
+    }
+    
+    
 }
