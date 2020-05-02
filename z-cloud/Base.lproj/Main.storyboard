@@ -166,14 +166,26 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pink-cloud" translatesAutoresizingMaskIntoConstraints="NO" id="wRM-Xz-6Mm">
                                         <rect key="frame" x="16" y="16" width="343" height="196"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LzJ-Oo-inK">
+                                        <rect key="frame" x="16" y="607" width="343" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="ShS-mN-Eom"/>
+                                        </constraints>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="onSaveClick:" destination="61G-ln-yRQ" eventType="touchUpInside" id="bHM-os-8Pp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Ris-ij-C1p" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="4XJ-8g-eCj"/>
                                     <constraint firstAttribute="trailing" secondItem="wRM-Xz-6Mm" secondAttribute="trailing" constant="16" id="4cf-CK-Z0y"/>
+                                    <constraint firstAttribute="bottom" secondItem="LzJ-Oo-inK" secondAttribute="bottom" constant="16" id="8gb-i2-MO9"/>
                                     <constraint firstItem="kz7-Lo-oFr" firstAttribute="top" secondItem="Ris-ij-C1p" secondAttribute="bottom" constant="8" id="DtZ-UR-PZ5"/>
                                     <constraint firstItem="NJl-ht-pdf" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="GDx-yd-tb1"/>
                                     <constraint firstAttribute="trailing" secondItem="NJl-ht-pdf" secondAttribute="trailing" constant="16" id="MTi-rZ-ISc"/>
+                                    <constraint firstItem="LzJ-Oo-inK" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="QLB-7k-wE9"/>
                                     <constraint firstItem="NJl-ht-pdf" firstAttribute="top" secondItem="kz7-Lo-oFr" secondAttribute="bottom" constant="16" id="Qwa-Gn-d4I"/>
                                     <constraint firstItem="kz7-Lo-oFr" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="VTi-wD-Odc"/>
                                     <constraint firstItem="Ris-ij-C1p" firstAttribute="top" secondItem="wRM-Xz-6Mm" secondAttribute="bottom" constant="16" id="YkZ-e3-Blg"/>
@@ -181,6 +193,7 @@
                                     <constraint firstItem="wRM-Xz-6Mm" firstAttribute="top" secondItem="0gD-yQ-6Av" secondAttribute="top" constant="16" id="iBB-rd-y7W"/>
                                     <constraint firstAttribute="trailing" secondItem="kz7-Lo-oFr" secondAttribute="trailing" constant="16" id="kfB-32-ioW"/>
                                     <constraint firstItem="keh-l9-HjT" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="kqn-y5-iIV"/>
+                                    <constraint firstAttribute="trailing" secondItem="LzJ-Oo-inK" secondAttribute="trailing" constant="16" id="p3x-cE-icZ"/>
                                     <constraint firstItem="NJl-ht-pdf" firstAttribute="centerY" secondItem="0gD-yQ-6Av" secondAttribute="centerY" id="pZU-Uj-EBV"/>
                                     <constraint firstAttribute="trailing" secondItem="Ris-ij-C1p" secondAttribute="trailing" constant="16" id="r1g-ju-Wpz"/>
                                     <constraint firstItem="keh-l9-HjT" firstAttribute="top" secondItem="NJl-ht-pdf" secondAttribute="bottom" constant="8" id="rhH-Zg-unj"/>
@@ -200,8 +213,11 @@
                     </view>
                     <connections>
                         <outlet property="myHostLbl" destination="Ris-ij-C1p" id="fHY-Yb-tRY"/>
+                        <outlet property="myHostText" destination="kz7-Lo-oFr" id="BWw-3Y-847"/>
                         <outlet property="myMainView" destination="0gD-yQ-6Av" id="5SD-w8-J0G"/>
                         <outlet property="myPortLbl" destination="NJl-ht-pdf" id="EEZ-Iy-DPf"/>
+                        <outlet property="myPortText" destination="keh-l9-HjT" id="a9w-ce-Zp4"/>
+                        <outlet property="mySaveBtn" destination="LzJ-Oo-inK" id="xST-pY-w7I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mtS-yK-Lye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
