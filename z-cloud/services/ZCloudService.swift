@@ -11,10 +11,20 @@ import UIKit
 
 class ZCloudService : PhotoService {
     
+    private static let INSTANCE = ZCloudService()
+    
     private let api = ZCloudApi()
     private var photos: [String] = []
     
-    init() {
+    private init() {
+        reloadData()
+    }
+    
+    static func signleton() -> ZCloudService {
+        return INSTANCE
+    }
+    
+    func reloadData(){
         api.findPhotos { (photos) in
             self.photos = photos
         }

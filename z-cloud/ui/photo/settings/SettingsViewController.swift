@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    
     @IBOutlet weak var myMainView: UIView!
     @IBOutlet weak var myHostLbl: UILabel!
     @IBOutlet weak var myPortLbl: UILabel!
@@ -18,6 +18,20 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var mySaveBtn: UIButton!
     
     @IBAction func onSaveClick(_ sender: UIButton) {
+        
+        if let host = myHostText.text {
+            
+            if host != "" {
+                let configuration = ZCloudApiConfigurationService.Configuration()
+                configuration.apiHost = host
+                configuration.apiPort = myPortText.text ?? ""
+                
+                ZCloudApiConfigurationService.singleton().set(configuration)
+            }
+        }
+        
+        navigationController?.popViewController(animated: true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,6 +40,17 @@ class SettingsViewController: UIViewController {
         myPortLbl.textColor = UIConfiguration.singleton().color.pinkBarButtonItem
         mySaveBtn.backgroundColor = UIConfiguration.singleton().color.pinkBarButtonItem
         mySaveBtn.tintColor = .white
+        
+        let configuration = ZCloudApiConfigurationService.singleton().get()
+        myHostText.text = configuration?.apiHost
+        myPortText.text = configuration?.apiPort
     }
-
+    
+    
+    // End editing when touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    
 }

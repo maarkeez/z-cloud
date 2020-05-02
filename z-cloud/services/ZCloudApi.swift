@@ -10,17 +10,28 @@ import Foundation
 import Alamofire
 
 class ZCloudApi {
-    private let FIND_PHOTOS_URL = "http://192.168.1.34:8080/api/photos"
-    
+            
     func findPhotos(completion: @escaping ([String]) -> ()){
         
+        let configurationOpt = ZCloudApiConfigurationService.singleton().get()
+        guard let configuration = configurationOpt else {
+            completion([])
+            return
+        }
+        
+        var port = ""
+        if(configuration.apiPort != ""){
+            port = ":\(configuration.apiPort)"
+        }
+        
+        let FIND_PHOTOS_URL = "\(configuration.apiProtocol)://\(configuration.apiHost)\(port)/api/photos"
         AF.request(FIND_PHOTOS_URL)
             .validate()
             .responseDecodable(of: [String].self) { (response) in
                 var photos : [String] = []
                 if let responsePhotos = response.value {
                     for photo in responsePhotos{
-                        photos.append("\(self.FIND_PHOTOS_URL)/name/\(photo)")
+                        photos.append("\(FIND_PHOTOS_URL)/name/\(photo)")
                     }
                 }
                 completion(photos)
