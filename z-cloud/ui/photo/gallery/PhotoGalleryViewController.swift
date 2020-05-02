@@ -31,6 +31,11 @@ class PhotoGalleryViewController: UIViewController {
         loadZCloud()
     }
     
+    @IBAction func onSettingsClick(_ sender: UIBarButtonItem) {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     // MARK: - Functions
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -91,6 +96,7 @@ class PhotoGalleryViewController: UIViewController {
     
     private func setTitleColor(_ color: UIColor){
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: color]
+        self.navigationController?.navigationBar.tintColor = color
     }
     
 }

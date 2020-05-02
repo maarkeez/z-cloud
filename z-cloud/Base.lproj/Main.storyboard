@@ -85,7 +85,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BMC-Gm-XO8"/>
+                    <navigationItem key="navigationItem" id="BMC-Gm-XO8">
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="PTS-z6-R2m">
+                            <connections>
+                                <action selector="onSettingsClick:" destination="BYZ-38-t0r" id="b4u-cf-H02"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="myCollectionView" destination="Fdm-MA-aQh" id="MNu-dL-7Sh"/>
                         <outlet property="myIphoneBtn" destination="Deu-JJ-xXj" id="Qez-ZJ-cOs"/>
@@ -112,6 +118,96 @@
             </objects>
             <point key="canvasLocation" x="1788" y="136.28185907046478"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="Zoa-ds-Wye">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="61G-ln-yRQ" customClass="SettingsViewController" customModule="z_cloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EIX-t9-oMt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gD-yQ-6Av">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kz7-Lo-oFr">
+                                        <rect key="frame" x="16" y="261" width="343" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="4sr-NB-J1c"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="keh-l9-HjT">
+                                        <rect key="frame" x="16" y="354" width="343" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="G8a-fe-bPo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Host" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ris-ij-C1p">
+                                        <rect key="frame" x="16" y="228" width="343" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="39W-6Y-2ib"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJl-ht-pdf">
+                                        <rect key="frame" x="16" y="321" width="343" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="GrZ-5h-wkg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pink-cloud" translatesAutoresizingMaskIntoConstraints="NO" id="wRM-Xz-6Mm">
+                                        <rect key="frame" x="16" y="16" width="343" height="196"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Ris-ij-C1p" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="4XJ-8g-eCj"/>
+                                    <constraint firstAttribute="trailing" secondItem="wRM-Xz-6Mm" secondAttribute="trailing" constant="16" id="4cf-CK-Z0y"/>
+                                    <constraint firstItem="kz7-Lo-oFr" firstAttribute="top" secondItem="Ris-ij-C1p" secondAttribute="bottom" constant="8" id="DtZ-UR-PZ5"/>
+                                    <constraint firstItem="NJl-ht-pdf" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="GDx-yd-tb1"/>
+                                    <constraint firstAttribute="trailing" secondItem="NJl-ht-pdf" secondAttribute="trailing" constant="16" id="MTi-rZ-ISc"/>
+                                    <constraint firstItem="NJl-ht-pdf" firstAttribute="top" secondItem="kz7-Lo-oFr" secondAttribute="bottom" constant="16" id="Qwa-Gn-d4I"/>
+                                    <constraint firstItem="kz7-Lo-oFr" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="VTi-wD-Odc"/>
+                                    <constraint firstItem="Ris-ij-C1p" firstAttribute="top" secondItem="wRM-Xz-6Mm" secondAttribute="bottom" constant="16" id="YkZ-e3-Blg"/>
+                                    <constraint firstAttribute="trailing" secondItem="keh-l9-HjT" secondAttribute="trailing" constant="16" id="i3q-sI-z4P"/>
+                                    <constraint firstItem="wRM-Xz-6Mm" firstAttribute="top" secondItem="0gD-yQ-6Av" secondAttribute="top" constant="16" id="iBB-rd-y7W"/>
+                                    <constraint firstAttribute="trailing" secondItem="kz7-Lo-oFr" secondAttribute="trailing" constant="16" id="kfB-32-ioW"/>
+                                    <constraint firstItem="keh-l9-HjT" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="kqn-y5-iIV"/>
+                                    <constraint firstItem="NJl-ht-pdf" firstAttribute="centerY" secondItem="0gD-yQ-6Av" secondAttribute="centerY" id="pZU-Uj-EBV"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ris-ij-C1p" secondAttribute="trailing" constant="16" id="r1g-ju-Wpz"/>
+                                    <constraint firstItem="keh-l9-HjT" firstAttribute="top" secondItem="NJl-ht-pdf" secondAttribute="bottom" constant="8" id="rhH-Zg-unj"/>
+                                    <constraint firstItem="NJl-ht-pdf" firstAttribute="centerX" secondItem="0gD-yQ-6Av" secondAttribute="centerX" id="w8v-EI-mWR"/>
+                                    <constraint firstItem="wRM-Xz-6Mm" firstAttribute="leading" secondItem="0gD-yQ-6Av" secondAttribute="leading" constant="16" id="wZN-er-hgg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Jvg-a8-kGz" firstAttribute="trailing" secondItem="0gD-yQ-6Av" secondAttribute="trailing" id="2Jq-1D-Jo6"/>
+                            <constraint firstItem="Jvg-a8-kGz" firstAttribute="bottom" secondItem="0gD-yQ-6Av" secondAttribute="bottom" id="6ip-Xp-n4b"/>
+                            <constraint firstItem="0gD-yQ-6Av" firstAttribute="leading" secondItem="Jvg-a8-kGz" secondAttribute="leading" id="heZ-lw-Hip"/>
+                            <constraint firstItem="0gD-yQ-6Av" firstAttribute="top" secondItem="Jvg-a8-kGz" secondAttribute="top" id="ugq-l3-GlX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jvg-a8-kGz"/>
+                    </view>
+                    <connections>
+                        <outlet property="myHostLbl" destination="Ris-ij-C1p" id="fHY-Yb-tRY"/>
+                        <outlet property="myMainView" destination="0gD-yQ-6Av" id="5SD-w8-J0G"/>
+                        <outlet property="myPortLbl" destination="NJl-ht-pdf" id="EEZ-Iy-DPf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mtS-yK-Lye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1788" y="-549.17541229385313"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Jg-nR-FT2">
             <objects>
@@ -134,5 +230,7 @@
     <resources>
         <image name="blue-cloud" width="36" height="36"/>
         <image name="iphone-2" width="42" height="42"/>
+        <image name="pink-cloud" width="256" height="256"/>
+        <image name="settings" width="36" height="36"/>
     </resources>
 </document>
