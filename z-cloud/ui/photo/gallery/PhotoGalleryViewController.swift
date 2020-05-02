@@ -30,6 +30,7 @@ class PhotoGalleryViewController: UIViewController {
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         myCollectionView.backgroundColor = UIConfiguration.singleton().color.mainBackground
         myCollectionView.delegate = self
         myCollectionView.dataSource = self
@@ -38,20 +39,23 @@ class PhotoGalleryViewController: UIViewController {
         loadPhotoGallery()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let lastItemIndex = photoService.latestPhotoIndex()
-        myCollectionView.scrollToItem(at: IndexPath(item: lastItemIndex, section: 0), at: .bottom, animated: false)
-    }
-    
     private func loadPhotoGallery(){
         self.title = "Photo Gallery"
         photoService = PhotoServiceFactory.singleton().get(.GALLERY)
+        myCollectionView.reloadData()
+        scrollToBottom()
     }
     
     private func loadZCloud(){
         self.title = "Z Cloud"
         photoService = PhotoServiceFactory.singleton().get(.ZCLOUD)
+        myCollectionView.reloadData()
+        scrollToBottom()
+    }
+    
+    private func scrollToBottom(){
+        let lastItemIndex = photoService.latestPhotoIndex()
+        myCollectionView.scrollToItem(at: IndexPath(item: lastItemIndex, section: 0), at: .bottom, animated: false)
     }
     
 }

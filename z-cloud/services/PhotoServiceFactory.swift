@@ -13,6 +13,7 @@ class PhotoServiceFactory {
     private static let INSTANCE = PhotoServiceFactory()
     
     private let photoGalleryService = PhotoGalleryService()
+    private let placeHolderService = PlaceHolderService()
     
     enum SourceType {
         case GALLERY
@@ -25,8 +26,10 @@ class PhotoServiceFactory {
     
     public func get(_ sourceType: SourceType) -> PhotoService {
         switch sourceType {
-        default:
+        case .GALLERY:
             return photoGalleryService
+        default:
+            return placeHolderService
         }
     }
     

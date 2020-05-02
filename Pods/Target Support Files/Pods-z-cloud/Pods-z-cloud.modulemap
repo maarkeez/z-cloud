@@ -1,0 +1,6 @@
+framework module Pods_z_cloud {
+  umbrella header "Pods-z-cloud-umbrella.h"
+
+  export *
+  module * { export * }
+}
