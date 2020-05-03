@@ -10,31 +10,68 @@ import Foundation
 import Alamofire
 
 class ZCloudApi {
-            
-    func findPhotos(completion: @escaping ([String]) -> ()){
+    
+    func findPhotos(completion: @escaping ([PhotoItem]) -> ()){
         
-        let configurationOpt = ZCloudApiConfigurationService.singleton().get()
-        guard let configuration = configurationOpt else {
+        let baseUrlOpt = getBaseUrl()
+        guard let baseUrl = baseUrlOpt else {
             completion([])
             return
         }
         
-        var port = ""
-        if(configuration.apiPort != ""){
-            port = ":\(configuration.apiPort)"
+        let url = "\(baseUrl)/api/photos"
+        
+        AF.request(url)
+            .validate()
+            .responseDecodable(of: [PhotoItem].self) { (response) in
+                
+                if let responsePhotos = response.value {
+                    completion(responsePhotos)
+                }
+        }
+    }
+    
+    private func getBaseUrl() -> String? {
+        
+        if  let configuration = ZCloudApiConfigurationService.singleton().get() {
+            
+            var baseUrl = "\(configuration.apiProtocol)://\(configuration.apiHost)"
+            
+            if(configuration.apiPort != ""){
+                baseUrl += ":\(configuration.apiPort)"
+            }
+            
+            return baseUrl
         }
         
-        let FIND_PHOTOS_URL = "\(configuration.apiProtocol)://\(configuration.apiHost)\(port)/api/photos"
-        AF.request(FIND_PHOTOS_URL)
-            .validate()
-            .responseDecodable(of: [String].self) { (response) in
-                var photos : [String] = []
-                if let responsePhotos = response.value {
-                    for photo in responsePhotos{
-                        photos.append("\(FIND_PHOTOS_URL)/name/\(photo)")
-                    }
-                }
-                completion(photos)
+        return nil
+        
+    }
+    
+    func getPhotoNameUrl(_ photoItem: PhotoItem) -> String? {
+        guard let baseUrl = getBaseUrl() else {
+            return nil
         }
+        
+        return "\(baseUrl)/api/photos/name/\(photoItem.path)"
+    }
+    
+    func getThumbnailNameUrl(_ photoItem: PhotoItem) -> String? {
+        guard let baseUrl = getBaseUrl() else {
+            return nil
+        }
+        
+        return "\(baseUrl)/api/thumbnail/name/\(photoItem.path)"
+    }
+}
+
+
+struct PhotoItem: Decodable {
+    let path: String
+    let creationDate: CLong
+    
+    enum CodingKeys: String, CodingKey {
+        case path
+        case creationDate
     }
 }

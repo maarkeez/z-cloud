@@ -14,7 +14,7 @@ class ZCloudService : PhotoService {
     private static let INSTANCE = ZCloudService()
     
     private let api = ZCloudApi()
-    private var photos: [String] = []
+    private var photos: [PhotoItem] = []
     
     static func singleton() -> ZCloudService {
         return INSTANCE
@@ -29,18 +29,17 @@ class ZCloudService : PhotoService {
     }
     
     func getPhotoUrl(at photoIndex: Int) -> String {
-        return photos[photoIndex]
+        return api.getPhotoNameUrl(photos[photoIndex])!
     }
     
     func getThumbnailUrl(at photoIndex: Int) -> String {
-        //FIXME: code this properly
-        return photos[photoIndex].replacingOccurrences(of: "/photos/name/", with: "/thumbnail/name/")
+        return api.getThumbnailNameUrl(photos[photoIndex])!
     }
     
     func getPhoto(at photoIndex: Int, completion: @escaping (UIImage?) -> ()) {
         
         DispatchQueue.global().async {
-            let photoUrl = self.photos[photoIndex]
+            let photoUrl = self.getPhotoUrl(at: photoIndex)
             let url = URL(string: photoUrl)
             if let url = url {
                 let data = try? Data(contentsOf: url)
