@@ -36,4 +36,9 @@ class PlaceHolderService: PhotoService {
     func getPhotoUrl(at photoIndex: Int) -> String {
         return ""
     }
+    
+    func getThumbnailUrl(at photoIndex: Int) -> String {
+        
+        return ""
+    }
 }

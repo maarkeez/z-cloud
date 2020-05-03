@@ -20,7 +20,7 @@ class PhotoCellProviderZCloud : PhotoCellProvider {
     
     func loadCellImage(_ cell: PhotoGalleryCell, indexPath: IndexPath, photoService: PhotoService) {
         cell.myImage.kf.cancelDownloadTask()
-        let photoUrl = photoService.getPhotoUrl(at: indexPath.row)
+        let photoUrl = photoService.getThumbnailUrl(at: indexPath.row)
         cell.myImage.kf.setImage(with: URL(string: photoUrl), placeholder: #imageLiteral(resourceName: "image-placeholder"))
     }
     

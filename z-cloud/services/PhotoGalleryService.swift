@@ -46,4 +46,9 @@ class PhotoGalleryService: PhotoService {
         
         return ""
     }
+    
+    func getThumbnailUrl(at photoIndex: Int) -> String {
+        
+        return ""
+    }
 }

@@ -14,5 +14,6 @@ protocol PhotoService {
     
     func reloadData(completion: @escaping (_ numberOfPhotos: Int)->())
     func getPhoto(at photoIndex: Int,  completion: @escaping (_ photoImage: UIImage?)->())
-    func getPhotoUrl(at photoIndex: Int) -> String 
+    func getPhotoUrl(at photoIndex: Int) -> String
+    func getThumbnailUrl(at photoIndex: Int) -> String 
 }

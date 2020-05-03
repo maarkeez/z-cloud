@@ -32,6 +32,11 @@ class ZCloudService : PhotoService {
         return photos[photoIndex]
     }
     
+    func getThumbnailUrl(at photoIndex: Int) -> String {
+        //FIXME: code this properly
+        return photos[photoIndex].replacingOccurrences(of: "/photos/name/", with: "/thumbnail/name/")
+    }
+    
     func getPhoto(at photoIndex: Int, completion: @escaping (UIImage?) -> ()) {
         
         DispatchQueue.global().async {
