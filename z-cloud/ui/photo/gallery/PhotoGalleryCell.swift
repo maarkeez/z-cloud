@@ -10,13 +10,11 @@ import UIKit
 
 class PhotoGalleryCell: UICollectionViewCell {
     
+    public static let reuseIdentifier = "PhotoGalleryCell"
+    
     @IBOutlet weak var myImage: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func prepareForReuse() {
+    func resetCell() {
         backgroundColor = .black
         myImage.contentMode = .scaleAspectFill
         myImage.image=#imageLiteral(resourceName: "image-placeholder")

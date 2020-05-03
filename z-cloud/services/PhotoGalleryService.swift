@@ -41,4 +41,9 @@ class PhotoGalleryService: PhotoService {
         })
         completion(photoGalleryImages.count)
     }
+    
+    func getPhotoUrl(at photoIndex: Int) -> String {
+        
+        return ""
+    }
 }

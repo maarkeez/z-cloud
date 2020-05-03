@@ -28,15 +28,21 @@ class ZCloudService : PhotoService {
         }
     }
     
+    func getPhotoUrl(at photoIndex: Int) -> String {
+        return photos[photoIndex]
+    }
+    
     func getPhoto(at photoIndex: Int, completion: @escaping (UIImage?) -> ()) {
+        
         DispatchQueue.global().async {
             let photoUrl = self.photos[photoIndex]
             let url = URL(string: photoUrl)
             if let url = url {
                 let data = try? Data(contentsOf: url)
                 if let data = data {
+                    let image = UIImage(data: data)
                     DispatchQueue.main.async {
-                        completion(UIImage(data: data))
+                        completion(image)
                     }
                 }else{
                     print("Could not load (data): \(photoUrl)")

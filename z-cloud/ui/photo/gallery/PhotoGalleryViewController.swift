@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import Alamofire
+import Kingfisher
 
 class PhotoGalleryViewController: UIViewController {
     
     // MARK: - Properties
-    private let reuseIdentifier = "PhotoGalleryCell"
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 2.5, left: 10.0, bottom: 2.5, right: 10.0)
+    private var photoServiceType = PhotoServiceFactory.SourceType.GALLERY
     private var photoService = PhotoServiceFactory.singleton().get(.GALLERY)
     private var itemCount = 0
+    private var photoCellProvider : PhotoCellProvider = PhotoCellProviderGallery()
     
     // MARK: - Visual elements
     @IBOutlet weak var myIphoneBtn: UIBarButtonItem!
@@ -61,6 +64,14 @@ class PhotoGalleryViewController: UIViewController {
         PhotoAccessService.shared.checkPhotoLibraryAccess(self)
         
         loadPhotoGallery()
+        
+        // FIXME: - This extra scroll should not be needed, why its happening?
+        scrollToBottom()
+        self.myCollectionView.performBatchUpdates(nil) { (animationsCompleted) in
+            if animationsCompleted {
+                self.loadAllVisibleCells()
+            }
+        }
     }
     
     private func loadPhotoGallery(){
@@ -72,11 +83,20 @@ class PhotoGalleryViewController: UIViewController {
         myZCloudBtn.tintColor = UIConfiguration.singleton().color.unSelectedBarButtonItem
         
         // Load data from source
+        photoCellProvider = PhotoCellProviderGallery()
+//        self.itemCount = 0
+        //self.myCollectionView.reloadData()
+        photoServiceType = PhotoServiceFactory.SourceType.GALLERY
         photoService = PhotoServiceFactory.singleton().get(.GALLERY)
         photoService.reloadData(){(numberOfPhotos) in
             self.itemCount = numberOfPhotos
             self.myCollectionView.reloadData()
             self.scrollToBottom()
+            self.myCollectionView.performBatchUpdates(nil) { (animationsCompleted) in
+                if animationsCompleted {
+                    self.loadAllVisibleCells()
+                }
+            }
         }
     }
     
@@ -89,11 +109,21 @@ class PhotoGalleryViewController: UIViewController {
         myIphoneBtn.tintColor = UIConfiguration.singleton().color.unSelectedBarButtonItem
         
         // Load data from source
+        photoCellProvider = PhotoCellProviderZCloud()
+//        self.itemCount = 0
+        //self.myCollectionView.reloadData()
+        photoServiceType = PhotoServiceFactory.SourceType.ZCLOUD
         photoService = PhotoServiceFactory.singleton().get(.ZCLOUD)
         photoService.reloadData(){(numberOfPhotos) in
             self.itemCount = numberOfPhotos
             self.myCollectionView.reloadData()
             self.scrollToBottom()
+            self.myCollectionView.performBatchUpdates(nil) { (animationsCompleted) in
+                if animationsCompleted {
+                    self.loadAllVisibleCells()
+                }
+            }
+            
         }
     }
     
@@ -107,6 +137,15 @@ class PhotoGalleryViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: color]
         self.navigationController?.navigationBar.tintColor = color
     }
+    
+    private func loadAllVisibleCells(){
+        for cell in myCollectionView.visibleCells  as! [PhotoGalleryCell]    {
+            if let indexPath = myCollectionView.indexPath(for: cell as PhotoGalleryCell){
+                photoCellProvider.loadCellImage(cell, indexPath: indexPath, photoService: photoService)
+            }
+        }
+    }
+    
     
 }
 
@@ -122,15 +161,12 @@ extension PhotoGalleryViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoGalleryCell
-        cell.prepareForReuse()
-        photoService.getPhoto(at: indexPath.row){(image) in
-            cell.myImage.image=image
-        }
-        
-        return cell
+        return photoCellProvider.collectionView(collectionView, cellForItemAt: indexPath, photoService: photoService)
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        loadAllVisibleCells()
+    }
     
 }
 
