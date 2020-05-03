@@ -84,8 +84,8 @@ class PhotoGalleryViewController: UIViewController {
         
         // Load data from source
         photoCellProvider = PhotoCellProviderGallery()
-//        self.itemCount = 0
-        //self.myCollectionView.reloadData()
+        self.itemCount = 0
+        self.myCollectionView.reloadData()
         photoServiceType = PhotoServiceFactory.SourceType.GALLERY
         photoService = PhotoServiceFactory.singleton().get(.GALLERY)
         photoService.reloadData(){(numberOfPhotos) in
@@ -110,8 +110,8 @@ class PhotoGalleryViewController: UIViewController {
         
         // Load data from source
         photoCellProvider = PhotoCellProviderZCloud()
-//        self.itemCount = 0
-        //self.myCollectionView.reloadData()
+        self.itemCount = 0
+        self.myCollectionView.reloadData()
         photoServiceType = PhotoServiceFactory.SourceType.ZCLOUD
         photoService = PhotoServiceFactory.singleton().get(.ZCLOUD)
         photoService.reloadData(){(numberOfPhotos) in
